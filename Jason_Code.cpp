@@ -33,9 +33,7 @@ int City::getJewelCount() const {
 
 
 
-
 //Jewel Class Definition
-
 Jewel::Jewel(int value, int xPos, int yPos) : value(value), xPos(xPos), yPos(yPos) {}
 
 Jewel Jewel::operator*(int multiplier) const {
@@ -56,4 +54,65 @@ int Jewel::getXPos() const {
 
 int Jewel::getYPos() const {
     return yPos;
+}
+
+
+
+//Police Class Inplemention and Definition
+class Police {
+private:
+    int id;
+    int xPos;
+    int yPos;
+    int totalConfiscatedLoot;
+    int totalRobbersCaught;
+
+public:
+    // Constructor
+    Police(int id, int xPos, int yPos);
+
+    // Function to arrest a robber
+    void arrest(int lootValue);
+
+    // Function to move the police
+    void move();
+
+    // Getter methods
+    int getId() const;
+    int getXPos() const;
+    int getYPos() const;
+    int getTotalConfiscatedLoot() const;
+    int getTotalRobbersCaught() const;
+};
+
+//Definition
+Police::Police(int id, int xPos, int yPos) : id(id), xPos(xPos), yPos(yPos), totalConfiscatedLoot(0), totalRobbersCaught(0) {}
+
+void Police::arrest(int lootValue) {
+    totalConfiscatedLoot += lootValue;
+    totalRobbersCaught++;
+}
+
+void Police::move() {
+    // Implement movement logic here
+}
+
+int Police::getId() const {
+    return id;
+}
+
+int Police::getXPos() const {
+    return xPos;
+}
+
+int Police::getYPos() const {
+    return yPos;
+}
+
+int Police::getTotalConfiscatedLoot() const {
+    return totalConfiscatedLoot;
+}
+
+int Police::getTotalRobbersCaught() const {
+    return totalRobbersCaught;
 }
