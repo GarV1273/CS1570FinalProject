@@ -1,4 +1,4 @@
-// Programmers: Gavin Sutherland and Jason
+// Programmers: Gavin Sutherland and Jason Ni
 // Date: 04/25/2024
 // File: jewel.h
 // Purpose: Contains the Jewel class for the police chase program
@@ -15,16 +15,17 @@ class Jewel
 {
     public:
         // Constructors
-        Jewel(const int value, const int xPos, const int yPos);
+        Jewel::Jewel(int value, int xPos, int yPos) 
+            : value(value), xPos(xPos), yPos(yPos) {}
 
         // Getters
-        int getValue() const;
-        int getXPos() const;
-        int getYPos() const;
+        int getValue() const {return value;};
+        int getXPos() const {return xPos;};
+        int getYPos() const {return yPos;};
 
         // Member functions
-        Jewel operator * (const Jewel& jewel);
-        Jewel operator *= (const Jewel& jewel);
+        Jewel operator * ();
+        // Jewel operator *= (const Jewel& jewel); // TODO Implement
 
     private:
         // Members
