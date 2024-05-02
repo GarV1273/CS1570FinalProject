@@ -1,0 +1,8 @@
+1. Are jewel values defined when they are created or when they are picked up?
+2. Do jewel values change if they are picked up then dropped at a new spot?
+3. *= operator
+4. If an active and inactive robber stand in the same spot, what character shows?
+5. Distribution of loot between robbers.
+6. What qualifies as the nearest cell for dropping loot.\
+7. Do the police need to keep track of the loot they've confiscated or only the value?
+8. If a police officer and an inactive robber are on the same spot, what character shows?

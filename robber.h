@@ -24,6 +24,7 @@ class Robber {
         bool isGreedy;
     public:
         // Constructors
+        Robber();
         // Copy
         Robber(const Robber& other);
 
@@ -41,6 +42,12 @@ class Robber {
         // Pre:  None
         // Post: The robber moves to a new position and updates their position variables
         void move();
+
+        // Getters/setters
+        void incrementItemsInBag();
+        void decrementItemsInBag();
+        void resetBag();
+
 };
 
 #include "robberImp.hpp"

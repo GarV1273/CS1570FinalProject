@@ -7,7 +7,7 @@
 #include "jewel.h"
 
 Jewel Jewel::operator*() {
-    return Jewel(value * 2, xPos, yPos);
+    return Jewel(value * 2, row, col);
 }
 
 // void Jewel::operator*=(int multiplier) {

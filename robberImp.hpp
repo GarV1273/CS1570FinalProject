@@ -14,8 +14,49 @@ Robber<T>::Robber(const Robber& other) {
     isActive = other.isActive;
     isGreedy = other.isGreedy;
 
-    // Distribute items between bags
-    // TODO Idk how to do this so we'll ask later
+    // Setup for distrubution of items
+    int tmpItemsInBag = other.itemsInBag;
+    T loot[20];
+
+    // Copy the other robber loot to the loot array
+    for (int i = 0; i < tmpItemsInBag; i++) {
+        loot[i] = other.bag[i];
+    }
+
+    other.resetBag();
+
+    // Distribute items between bags randomly
+    for (int i = 0; i < tmpItemsInBag; i++) {
+        int randRobber = rand() % 2;
+        if (randRobber == 0) {
+            bag[itemsInBag] = loot[i];
+            incrementItemsInBag();
+        } else {
+            bag[other.itemsInBag] = other.bag[i];
+            other.incrementItemsInBag();
+        }
+    }
+    
+}
+
+// Increment/decrement items in bag
+
+template <class T>
+void Robber<T>::incrementItemsInBag() {
+    itemsInBag++;
+}
+
+template <class T>
+void Robber<T>::decrementItemsInBag() {
+    itemsInBag--;
+}
+
+template <class T>
+void Robber<T>::resetBag() {
+    for (int i = 0; i < itemsInBag; i++) {
+        bag[i] = Jewel();
+    }
+    itemsInBag = 0;
 }
 
 template <class T>

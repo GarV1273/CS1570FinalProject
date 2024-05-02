@@ -26,3 +26,19 @@ void City::printGrid() {
     }
     cout << endl;
 }
+
+Point City::getUniquePosition() const {
+    // Get a random position that is not occupied
+    int row = rand() % 11;
+    int col = rand() % 13;
+    while (cityGrid[row][col]!= ' ') {
+        row = rand() % 11;
+        col = rand() % 13;
+    }
+
+    Point point;
+    point.col = col;
+    point.row = row;
+
+    return point;
+}

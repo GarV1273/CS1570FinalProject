@@ -46,10 +46,6 @@ void Police::arrest(int lootValue) {
     totalRobbersCaught++;
 }
 
-void Police::move() {
-    // Implement movement logic here
-}
-
 int Police::getId() const {
     return id;
 }
@@ -68,4 +64,36 @@ int Police::getTotalConfiscatedLoot() const {
 
 int Police::getTotalRobbersCaught() const {
     return totalRobbersCaught;
+}
+
+void scatterJewels(City& city, int jewelCount) {
+    // Scatter jewels randomly in the city grid
+    srand(100); // Set random seed
+    while (jewelCount > 0) {
+        int x = rand() % 11;
+        int y = rand() % 13;
+        if (city.grid[x][y] == ' ') {
+            city.grid[x][y] = 'J'; // Place jewel in empty cell
+            jewelCount--;
+        }
+    }
+}
+
+void placeEntities(City& city, int policeCount, int totalRobbers) {
+    srand(100); // Set random seed
+    while (policeCount > 0 && totalRobbers > 0) {
+        int x = rand() % 11;
+        int y = rand() % 13;
+        if (city.grid[x][y] == ' ') {
+            if (totalRobbers > 0) {
+                city.grid[x][y] = 'p'; // Place police officer
+                policeCount--;
+            } else {
+                (policeCount > 0) 
+                city.grid[x][y] = 'r'; // Place ordinary robber
+                ordinaryRobberCount--;
+                totalRobbers--;
+            }
+        }
+    }
 }

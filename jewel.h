@@ -15,13 +15,14 @@ class Jewel
 {
     public:
         // Constructors
-        Jewel::Jewel(int value, int xPos, int yPos) 
-            : value(value), xPos(xPos), yPos(yPos) {}
+        Jewel();
+        Jewel::Jewel(int value, int row, int col) 
+            : value(value), row(row), col(col) {}
 
         // Getters
         int getValue() const {return value;};
-        int getXPos() const {return xPos;};
-        int getYPos() const {return yPos;};
+        int getRow() const {return row;};
+        int getCol() const {return col;};
 
         // Member functions
         Jewel operator * ();
@@ -30,8 +31,8 @@ class Jewel
     private:
         // Members
         const int value;
-        const int xPos;
-        const int yPos;
+        const int row;
+        const int col;
 };
 
 

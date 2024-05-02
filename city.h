@@ -11,19 +11,27 @@
 
 using namespace std;
 
+// Used to return a unique point to the main function
+struct Point {
+    int row;
+    int col;
+};
+
 class City {
     public:
         // Constructors
         City();
 
         // Getters
-        char getValueAtCoordinate(int x, int y) { return cityGrid[x][y];}
+        char getValueAtCoordinate(int row, int col) { return cityGrid[row][col];}
         int getNumJewels() { return numJewels;}
 
         // Setters
-        void setValueAtCoordinate(char value, int x, int y) { cityGrid[x][y] = value;}
+        void setValueAtCoordinate(char value, int row, int col) { cityGrid[row][col] = value;}
 
         void printGrid();
+
+        Point getUniquePosition() const;
 
     private:
         char cityGrid[11][13];
