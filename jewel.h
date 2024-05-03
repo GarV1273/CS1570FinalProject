@@ -15,9 +15,8 @@ class Jewel
 {
     public:
         // Constructors
-        Jewel();
-        Jewel::Jewel(int value, int row, int col) 
-            : value(value), row(row), col(col) {}
+        Jewel() {};
+        Jewel(int value, int row, int col) : value(value), row(row), col(col) {}
 
         // Getters
         int getValue() const {return value;};
@@ -25,14 +24,14 @@ class Jewel
         int getCol() const {return col;};
 
         // Member functions
-        Jewel operator * ();
-        // Jewel operator *= (const Jewel& jewel); // TODO Implement
+        Jewel operator * (const int multiplier);
+        Jewel operator *= (const int multiplier);
 
     private:
         // Members
-        const int value;
-        const int row;
-        const int col;
+        int value;
+        int row;
+        int col;
 };
 
 

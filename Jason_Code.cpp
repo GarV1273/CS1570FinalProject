@@ -1,3 +1,4 @@
+/*
 void City::initializeGrid() {
     // Scatter 60 jewels randomly in the city grid
     for (int i = 0; i < 60; ++i) {
@@ -97,3 +98,5 @@ void placeEntities(City& city, int policeCount, int totalRobbers) {
         }
     }
 }
+
+*/

@@ -3,13 +3,16 @@
 // File: jewelImp.cpp
 // Purpose: Contains the Jewel class implementaion
 
-
 #include "jewel.h"
 
-Jewel Jewel::operator*() {
-    return Jewel(value * 2, row, col);
+// Constructor overload
+
+Jewel Jewel::operator*(const int multiplier) {
+    value *= multiplier;
+    return *this;
 }
 
-// void Jewel::operator*=(int multiplier) {
-//     value *= multiplier;
-// }
+Jewel Jewel::operator*=(int multiplier) {
+    value *= multiplier;
+    return *this;
+}

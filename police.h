@@ -17,22 +17,27 @@ private:
     int id;
     int currentRow;
     int currentCol;
-    int totalConfiscatedLoot;
-    int totalRobbersCaught;
+    int totalConfiscatedLoot = 0;
+    int totalRobbersCaught = 0;
 
 public:
     // Constructor
+    Police() {}
     Police(int id, int currentRow, int currentCol) : id(id), currentRow(currentRow), currentCol(currentCol), totalConfiscatedLoot(0), totalRobbersCaught(0) {}
 
     // Function to arrest a robber
-    // void arrest(Robber& robber); // TODO cry about it
+    template <class T>
+    void singleArrest(Robber<T>& robber);
+
+    template <class T>
+    void multiArrest(Robber<T> robber[20]);
 
     // Function to move the police
     void move();
 
     // Getter methods
-    int getCurrentRow() const {return currentRow;}
-    int getCurrentCol() const {return currentCol;}
+    int getRow() const {return currentRow;}
+    int getCol() const {return currentCol;}
     int getTotalConfiscatedLoot() const {return totalConfiscatedLoot;}
     int getTotalRobbersCaught() const {return totalRobbersCaught;}
 };

@@ -8,6 +8,9 @@
 
 #include <iostream>
 #include <string>
+#include "robber.h"
+#include "police.h"
+#include "jewel.h"
 
 using namespace std;
 
@@ -33,9 +36,12 @@ class City {
 
         Point getUniquePosition() const;
 
+        template <typename T>
+        void updateBoard(Jewel jewels[60], Police police[3], Robber<T> robbers[20]);
+
     private:
         char cityGrid[11][13];
-        int numJewels;
+        int numJewels = 60;
 };
 
 #endif

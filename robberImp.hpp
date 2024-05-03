@@ -3,7 +3,11 @@
 // File: robberImp.hpp
 // Purpose: Implementation for the Robber class (found in robber.h)
 
+#include <iostream>
+
 #include "robber.h"
+
+using namespace std;
 
 // Copy constructor overload
 template <class T>
@@ -36,11 +40,9 @@ Robber<T>::Robber(const Robber& other) {
             other.incrementItemsInBag();
         }
     }
-    
 }
 
 // Increment/decrement items in bag
-
 template <class T>
 void Robber<T>::incrementItemsInBag() {
     itemsInBag++;
@@ -148,7 +150,7 @@ void Robber<T>::move() {
                 
             default:
                 // This should never happen 
-                cout < "Error with random direction.";
+                cout << "Error with random direction.";
         }
     }
 }

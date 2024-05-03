@@ -24,9 +24,23 @@ class Robber {
         bool isGreedy;
     public:
         // Constructors
-        Robber();
+        // Default
+        Robber() {};
+
+        // Parameterized
+        Robber(int id, int currentRow, int currentCol, bool isActive, bool isGreedy)
+            : id(id), currentRow(currentRow), currentCol(currentCol), 
+            isActive(isActive), isGreedy(isGreedy) {}
+
         // Copy
         Robber(const Robber& other);
+
+        // Getters
+        int getRow() const { return currentRow; }
+        int getCol() const { return currentCol; }
+
+
+        // Member functions
 
         // Desc: Picks up a piece of loot and adds it to the robbers bag
         // Pre:  None
@@ -47,7 +61,10 @@ class Robber {
         void incrementItemsInBag();
         void decrementItemsInBag();
         void resetBag();
+        bool robberIsActive() { return isActive; }
 
+        // Friend classes
+        friend class Police;
 };
 
 #include "robberImp.hpp"
