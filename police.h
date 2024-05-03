@@ -25,14 +25,21 @@ public:
     Police() {}
     Police(int id, int currentRow, int currentCol) : id(id), currentRow(currentRow), currentCol(currentCol), totalConfiscatedLoot(0), totalRobbersCaught(0) {}
 
-    // Function to arrest a robber
+    // Desc: Function to arrest a robber
+    // Pre: None
+    // Post: Arrest a single robber
     template <class T>
     void singleArrest(Robber<T>& robber);
 
+    // Desc: Function to arrest a group of robber
+    // Pre: None
+    // Post: Arrest all the robbers in the same cell
     template <class T>
     void multiArrest(Robber<T> robber[20]);
 
-    // Function to move the police
+    // Desc: Function to move the police
+    // Pre: None
+    // Post: Move the police to a legal cell
     void move();
 
     // Getter methods
