@@ -1,4 +1,4 @@
-// Programmers: Gavin Sutherland and Jason Ni
+// Programmers: Gavin Sutherland (gas2bt, 101) and Jason Ni (Jnwkb, 301)
 // Date: 05/01/2024
 // File: jewelImp.cpp
 // Purpose: Contains the Jewel class implementaion

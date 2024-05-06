@@ -1,18 +1,20 @@
-// Programmers: Gavin Sutherland and Jason Ni
+// Programmers: Gavin Sutherland (gas2bt, 101) and Jason Ni (Jnwkb, 301)
 // Date: 04/25/2024
 // File: robberImp.hpp
 // Purpose: Implementation for the Robber class (found in robber.h)
 
 #include <iostream>
 
-#include "robber.h"
-
 using namespace std;
+
+template <class T>
+int Robber<T>::valueOfJewels {0};
 
 // Copy constructor overload
 template <class T>
-Robber<T>::Robber(const Robber& other) {
-    id = other.id;
+Robber<T>::Robber(Robber& other) {
+    other.hasSpawnedOtherRobber = true;
+    id = other.id + 1000;
     currentRow = other.currentRow;
     currentCol = other.currentCol;
     isActive = other.isActive;
@@ -56,7 +58,7 @@ void Robber<T>::decrementItemsInBag() {
 template <class T>
 void Robber<T>::resetBag() {
     for (int i = 0; i < itemsInBag; i++) {
-        bag[i] = Jewel();
+        bag[i] = T();
     }
     itemsInBag = 0;
 }
@@ -67,6 +69,7 @@ void Robber<T>::pickUpLoot(T loot) {
         // Pick up the item
         bag[itemsInBag] = loot;
         itemsInBag++;
+        valueOfJewels += loot.getValue();
     } else {
         // Robber is full. Do nothing
         ;
@@ -74,20 +77,23 @@ void Robber<T>::pickUpLoot(T loot) {
 }
 
 template <class T>
-Robber<T>& Robber<T>::operator --() {
+Robber<T>& Robber<T>::operator--() {
+    if (itemsInBag > 0) {
+        valueOfJewels -= bag[itemsInBag - 1].getValue();
+        bag[itemsInBag - 1] = T();
+        itemsInBag--;
+    }
 
-    bag[itemsInBag - 1] = Jewel();
-    itemsInBag--;
+    return *this;
 }
 
 template <class T>
 void Robber<T>::move() {
-    int direction = rand() % 8;
-
     bool directionIsValid = false;
 
     // Get a valid direction
     while (!directionIsValid) {
+        int direction = rand() % 8;
         switch(direction) {
             case 0:
                 if (currentRow > 0 && currentCol > 0) { // Move is valid
@@ -97,14 +103,14 @@ void Robber<T>::move() {
                 }
                 break;
             case 1:
-                if (currentCol > 0) { // Move is valid
+                if (currentRow > 0) { // Move is valid
                     directionIsValid = true;
                     currentRow--;
                 }
                 break;
 
             case 2: 
-                if (currentRow < 10 && currentCol > 0) { // Move is valid
+                if (currentRow > 0 && currentCol  < 12) { // Move is valid
                     directionIsValid = true;
                     currentRow--;
                     currentCol++;
@@ -151,9 +157,19 @@ void Robber<T>::move() {
             default:
                 // This should never happen 
                 cout << "Error with random direction.";
+                break;
         }
     }
+
+    return;
 }
 
+template <class T>
+int Robber<T>::getValueOfLootInBag() {
+    int total = 0;
+    for (int i = 0; i < itemsInBag; i++) {
+        total += bag[i].getValue();
+    }
 
-
+    return total;
+}

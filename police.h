@@ -1,4 +1,4 @@
-// Programmers: Gavin Sutherland and Jason Ni
+// Programmers: Gavin Sutherland (gas2bt, 101) and Jason Ni (Jnwkb, 301)
 // Date: 05/01/2024
 // File: police.h
 // Purpose: Contains the police class for the police chase program
@@ -29,13 +29,25 @@ public:
     // Pre: None
     // Post: Arrest a single robber
     template <class T>
-    void singleArrest(Robber<T>& robber);
+    void arrest(Robber<T>& robber, bool multiArrest) {
+        // Set robber to inactive state
+        robber.isActive = false;
+        totalRobbersCaught++;
 
-    // Desc: Function to arrest a group of robber
-    // Pre: None
-    // Post: Arrest all the robbers in the same cell
-    template <class T>
-    void multiArrest(Robber<T> robber[20]);
+        // Take the loot from the robber, double the value, and add to the total confiscated loot
+        for (int i = 0; i < robber.itemsInBag; i++) {
+            cout << "Taking loot #" << i << endl;
+            if (multiArrest) {
+                // Use *=
+                robber.bag[i] *= 2;
+            } else {
+                // Use *
+                robber.bag[i] = robber.bag[i] * 2;
+            }
+            
+            totalConfiscatedLoot += robber.bag[i].getValue();
+        }
+    }
 
     // Desc: Function to move the police
     // Pre: None
@@ -43,9 +55,11 @@ public:
     void move();
 
     // Getter methods
+    int getID() const { return id; }
     int getRow() const {return currentRow;}
     int getCol() const {return currentCol;}
     int getTotalConfiscatedLoot() const {return totalConfiscatedLoot;}
+    void setTotalConfiscatedLoot(int newValue) { totalConfiscatedLoot = newValue; }
     int getTotalRobbersCaught() const {return totalRobbersCaught;}
 };
 
