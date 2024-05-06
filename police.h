@@ -44,6 +44,8 @@ public:
                 // Use *
                 robber.bag[i] = robber.bag[i] * 2;
             }
+
+            cout << "Loot value: "<<robber.bag[i].getValue() << endl;
             
             totalConfiscatedLoot += robber.bag[i].getValue();
         }

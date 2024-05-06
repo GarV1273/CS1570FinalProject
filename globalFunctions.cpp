@@ -20,7 +20,7 @@ int getIndexOfJewelAtPosition(Jewel jewels[60], int row, int col) {
     }
 
     // This should never happen. It's included to stop error messages
-    cout << "ERROR IN JEWEL FINDING FUCNTION" << endl;
+    cout << "There is no jewel at this location" << endl;
     return -1;
 }
 

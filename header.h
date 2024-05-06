@@ -49,7 +49,7 @@ int getIndexOfRobberAtPosition(Robber<T> robbers[20], int numRobbers, int row, i
     }
 
     // This should never happen. It's included to stop error messages
-    cout << "ERROR IN JEWEL FINDING FUCNTION" << endl;
+    cout << "ERROR IN Robber FINDING FUCNTION" << endl;
     return -1;
 }
 

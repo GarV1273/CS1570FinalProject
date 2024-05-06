@@ -71,7 +71,7 @@ int main() {
     city.printGrid();
 
     // START MAIN PROGRAM LOGIC
-    int turns = 80;
+    int turns = 30;
 
     for (int i = 0; i < turns; i++) {
         cout << "==============================" << endl;
@@ -136,20 +136,26 @@ int main() {
                 // Robber tripping
                 if (rand() % 10 < 6) {
                     cout << "Robber #" << robbers[j].getID() << " tripped" << endl;
-                    // Find an open cell near the point
-                    Point openPoint = city.getOpenSpotNearPosition(robbers[j].getRow(), robbers[j].getCol());
+                    if (robbers[j].getNumItemsInBag() > 0) {
+                        // Find an open cell near the point
+                        Point openPoint = city.getOpenSpotNearPosition(robbers[j].getRow(), robbers[j].getCol());
 
-                    // Place the last piece of loot in the robbers bad in the new spot
-                    if (openPoint.row != -1) {
-                        // There is an open point. Find where the loot was originally and update the jewel in the jewel array
-                        int rowOfLoot = robbers[j].getRowOfLastItem();
-                        int colOfLoot = robbers[j].getColOfLastItem();
-                        int indexOfLoot = getIndexOfJewelAtPosition(jewels, rowOfLoot, colOfLoot);
-                        jewels[indexOfLoot].setNewLocation(openPoint.row, openPoint.col);
-                        jewels[indexOfLoot].setPickedUp(false);
-                        --robbers[j];
-                    } else {
-                        --robbers[j];
+                        // Place the last piece of loot in the robbers bad in the new spot
+                        if (openPoint.row != -1) {
+                            // There is an open point. Find where the loot was originally and update the jewel in the jewel array
+                            int rowOfLoot = robbers[j].getRowOfLastItem();
+                            cout << rowOfLoot << endl;
+                            int colOfLoot = robbers[j].getColOfLastItem();
+                            cout << colOfLoot << endl;
+                            int indexOfLoot = getIndexOfJewelAtPosition(jewels, rowOfLoot, colOfLoot);
+                            if (indexOfLoot != -1){
+                                jewels[indexOfLoot].setNewLocation(openPoint.row, openPoint.col);
+                                jewels[indexOfLoot].setPickedUp(false);
+                                --robbers[j];
+                            }
+                        } else {
+                            --robbers[j];
+                        }
                     }
                 }
             }
@@ -194,6 +200,7 @@ int main() {
                     // Check for moving again
                     if (jewels[getIndexOfJewelAtPosition(jewels, robbers[j].getRow(), robbers[j].getCol())].getValue() % 2 == 0) {
                         // MOVE AGAIN
+                        city.updateBoard(jewels, police, robbers, numRobbers);
                         // If the robber is able to move, do so.
                         cout << "Robber #" << robbers[j].getID() << " moved again from ("<<robbers[j].getRow()<<", "<<robbers[j].getCol();
                         // move the robber
@@ -221,6 +228,7 @@ int main() {
                             // Check for moving again
                             if (jewels[getIndexOfJewelAtPosition(jewels, robbers[j].getRow(), robbers[j].getCol())].getValue() % 2 == 0) {
                                 // THIRD MOVE
+                                city.updateBoard(jewels, police, robbers, numRobbers);
                                 // If the robber is able to move, do so.
                                 cout << "Robber #" << robbers[j].getID() << " moved again from ("<<robbers[j].getRow()<<", "<<robbers[j].getCol();
                                 // move the robber
@@ -292,20 +300,26 @@ int main() {
                                 // Robber tripping
                                 if (rand() % 10 < 6) {
                                     cout << "Robber #" << robbers[j].getID() << " tripped" << endl;
-                                    // Find an open cell near the point
-                                    Point openPoint = city.getOpenSpotNearPosition(robbers[j].getRow(), robbers[j].getCol());
+                                    if (robbers[j].getNumItemsInBag() > 0) {
+                                        // Find an open cell near the point
+                                        Point openPoint = city.getOpenSpotNearPosition(robbers[j].getRow(), robbers[j].getCol());
 
-                                    // Place the last piece of loot in the robbers bad in the new spot
-                                    if (openPoint.row != -1) {
-                                        // There is an open point. Find where the loot was originally and update the jewel in the jewel array
-                                        int rowOfLoot = robbers[j].getRowOfLastItem();
-                                        int colOfLoot = robbers[j].getColOfLastItem();
-                                        int indexOfLoot = getIndexOfJewelAtPosition(jewels, rowOfLoot, colOfLoot);
-                                        jewels[indexOfLoot].setNewLocation(openPoint.row, openPoint.col);
-                                        jewels[indexOfLoot].setPickedUp(false);
-                                        --robbers[j];
-                                    } else {
-                                        --robbers[j];
+                                        // Place the last piece of loot in the robbers bad in the new spot
+                                        if (openPoint.row != -1) {
+                                            // There is an open point. Find where the loot was originally and update the jewel in the jewel array
+                                            int rowOfLoot = robbers[j].getRowOfLastItem();
+                                            cout << rowOfLoot << endl;
+                                            int colOfLoot = robbers[j].getColOfLastItem();
+                                            cout << colOfLoot << endl;
+                                            int indexOfLoot = getIndexOfJewelAtPosition(jewels, rowOfLoot, colOfLoot);
+                                            if (indexOfLoot != -1){
+                                                jewels[indexOfLoot].setNewLocation(openPoint.row, openPoint.col);
+                                                jewels[indexOfLoot].setPickedUp(false);
+                                                --robbers[j];
+                                            }
+                                        } else {
+                                            --robbers[j];
+                                        }
                                     }
                                 }
                             } // END THIRD MOVE
@@ -357,20 +371,26 @@ int main() {
                         // Robber tripping
                         if (rand() % 10 < 6) {
                             cout << "Robber #" << robbers[j].getID() << " tripped" << endl;
-                            // Find an open cell near the point
-                            Point openPoint = city.getOpenSpotNearPosition(robbers[j].getRow(), robbers[j].getCol());
+                            if (robbers[j].getNumItemsInBag() > 0) {
+                                // Find an open cell near the point
+                                Point openPoint = city.getOpenSpotNearPosition(robbers[j].getRow(), robbers[j].getCol());
 
-                            // Place the last piece of loot in the robbers bad in the new spot
-                            if (openPoint.row != -1) {
-                                // There is an open point. Find where the loot was originally and update the jewel in the jewel array
-                                int rowOfLoot = robbers[j].getRowOfLastItem();
-                                int colOfLoot = robbers[j].getColOfLastItem();
-                                int indexOfLoot = getIndexOfJewelAtPosition(jewels, rowOfLoot, colOfLoot);
-                                jewels[indexOfLoot].setNewLocation(openPoint.row, openPoint.col);
-                                jewels[indexOfLoot].setPickedUp(false);
-                                --robbers[j];
-                            } else {
-                                --robbers[j];
+                                // Place the last piece of loot in the robbers bad in the new spot
+                                if (openPoint.row != -1) {
+                                    // There is an open point. Find where the loot was originally and update the jewel in the jewel array
+                                    int rowOfLoot = robbers[j].getRowOfLastItem();
+                                    cout << rowOfLoot << endl;
+                                    int colOfLoot = robbers[j].getColOfLastItem();
+                                    cout << colOfLoot << endl;
+                                    int indexOfLoot = getIndexOfJewelAtPosition(jewels, rowOfLoot, colOfLoot);
+                                    if (indexOfLoot != -1){
+                                        jewels[indexOfLoot].setNewLocation(openPoint.row, openPoint.col);
+                                        jewels[indexOfLoot].setPickedUp(false);
+                                        --robbers[j];
+                                    }
+                                } else {
+                                    --robbers[j];
+                                }
                             }
                         }
                     } // END FIRST MOVE AGAIN
@@ -422,20 +442,26 @@ int main() {
                 // Robber tripping
                 if (rand() % 10 < 6) {
                     cout << "Robber #" << robbers[j].getID() << " tripped" << endl;
-                    // Find an open cell near the point
-                    Point openPoint = city.getOpenSpotNearPosition(robbers[j].getRow(), robbers[j].getCol());
+                    if (robbers[j].getNumItemsInBag() > 0) {
+                        // Find an open cell near the point
+                        Point openPoint = city.getOpenSpotNearPosition(robbers[j].getRow(), robbers[j].getCol());
 
-                    // Place the last piece of loot in the robbers bad in the new spot
-                    if (openPoint.row != -1) {
-                        // There is an open point. Find where the loot was originally and update the jewel in the jewel array
-                        int rowOfLoot = robbers[j].getRowOfLastItem();
-                        int colOfLoot = robbers[j].getColOfLastItem();
-                        int indexOfLoot = getIndexOfJewelAtPosition(jewels, rowOfLoot, colOfLoot);
-                        jewels[indexOfLoot].setNewLocation(openPoint.row, openPoint.col);
-                        jewels[indexOfLoot].setPickedUp(false);
-                        --robbers[j];
-                    } else {
-                        --robbers[j];
+                        // Place the last piece of loot in the robbers bad in the new spot
+                        if (openPoint.row != -1) {
+                            // There is an open point. Find where the loot was originally and update the jewel in the jewel array
+                            int rowOfLoot = robbers[j].getRowOfLastItem();
+                            cout << rowOfLoot << endl;
+                            int colOfLoot = robbers[j].getColOfLastItem();
+                            cout << colOfLoot << endl;
+                            int indexOfLoot = getIndexOfJewelAtPosition(jewels, rowOfLoot, colOfLoot);
+                            if (indexOfLoot != -1){
+                                jewels[indexOfLoot].setNewLocation(openPoint.row, openPoint.col);
+                                jewels[indexOfLoot].setPickedUp(false);
+                                --robbers[j];
+                            }
+                        } else {
+                            --robbers[j];
+                        }
                     }
                 }
 
@@ -454,7 +480,7 @@ int main() {
             // SINGLE ROBBER
             if (city.getValueAtCoordinate(police[j].getRow(), police[j].getCol()) == 'r') {
                 cout << "Police #" << police[j].getID() << " found a robber" << endl;
-                cout << "Arresting robber at index " << getIndexOfRobberAtPosition(robbers, numRobbers, police[j].getRow(), police[i].getCol()) << endl;
+                cout << "Arresting robber at index " << getIndexOfRobberAtPosition(robbers, numRobbers, police[j].getRow(), police[j].getCol()) << endl;
                 police[j].template arrest(robbers[getIndexOfRobberAtPosition(robbers, numRobbers, police[j].getRow(), police[i].getCol())], false);
             }
 
