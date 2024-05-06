@@ -107,7 +107,7 @@ int main() {
                     // Check for extra robber spawning
                     if (robbers[j].getValueOfLootInBag() >= 1600 && !robbers[j].getHasSpawnedOtherRobber()) {
                         cout << "Threshold reached. Spawing new robber" << endl;
-                        Robber<Jewel> newRobber = Robber<Jewel>(robbers[j]);
+                        Robber<Jewel> newRobber(robbers[j]);
                         numRobbers++;
                         robbers[numRobbers] = newRobber;
                         robbers[j].disableRobberSpawning();
@@ -191,7 +191,7 @@ int main() {
                     // Check for extra robber spawning
                     if (robbers[j].getValueOfLootInBag() >= 1600 && !robbers[j].getHasSpawnedOtherRobber()) {
                         cout << "Threshold reached. Spawing new robber" << endl;
-                        Robber<Jewel> newRobber = Robber<Jewel>(robbers[j]);
+                        Robber<Jewel> newRobber(robbers[j]);
                         numRobbers++;
                         robbers[numRobbers] = newRobber;
                         robbers[j].disableRobberSpawning();
@@ -219,7 +219,7 @@ int main() {
                             // Check for extra robber spawning
                             if (robbers[j].getValueOfLootInBag() >= 1600 && !robbers[j].getHasSpawnedOtherRobber()) {
                                 cout << "Threshold reached. Spawing new robber" << endl;
-                                Robber<Jewel> newRobber = Robber<Jewel>(robbers[j]);
+                                Robber<Jewel> newRobber(robbers[j]);
                                 numRobbers++;
                                 robbers[numRobbers] = newRobber;
                                 robbers[j].disableRobberSpawning();
@@ -247,7 +247,7 @@ int main() {
                                     // Check for extra robber spawning
                                     if (robbers[j].getValueOfLootInBag() >= 1600 && !robbers[j].getHasSpawnedOtherRobber()) {
                                         cout << "Threshold reached. Spawing new robber" << endl;
-                                        Robber<Jewel> newRobber = Robber<Jewel>(robbers[j]);
+                                        Robber<Jewel> newRobber(robbers[j]);
                                         numRobbers++;
                                         robbers[numRobbers] = newRobber;
                                         robbers[j].disableRobberSpawning();
