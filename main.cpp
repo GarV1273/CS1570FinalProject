@@ -40,7 +40,7 @@ int main() {
     // Normal Robbers
     for (int i = 0; i < 2; i++) {
         Point uniquePoint = city.getUniquePosition();
-        Robber<Jewel> newRobber = Robber<Jewel>(getUniqueID(), uniquePoint.row, uniquePoint.col, true, false);
+        Robber<Jewel> newRobber(getUniqueID(), uniquePoint.row, uniquePoint.col, true, false);
         city.setValueAtCoordinate('r', uniquePoint.row, uniquePoint.col);
         robbers[i] = newRobber;
     }
@@ -48,7 +48,7 @@ int main() {
     //Greedy Robbers
     for (int i = 0; i < 2; i++) {
         Point uniquePoint = city.getUniquePosition();
-        Robber<Jewel> newRobber = Robber<Jewel>(getUniqueID(), uniquePoint.row, uniquePoint.col, true, true);
+        Robber<Jewel> newRobber(getUniqueID(), uniquePoint.row, uniquePoint.col, true, true);
         city.setValueAtCoordinate('r', uniquePoint.row, uniquePoint.col);
         robbers[i + 2] = newRobber;
     }
